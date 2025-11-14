@@ -6,7 +6,7 @@ const doc = {
         description: 'Products API for CSE341 Project 2'
     },
     host: 'localhost:3000',
-    schemes: ['http']
+    schemes: ['https']
 };
 
 const outputFile = './swagger.json';
