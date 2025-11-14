@@ -1,0 +1,69 @@
+### ===== PRODUCTS =====
+
+### Get all products
+GET http://localhost:3000/products
+
+### Get product by ID
+GET http://localhost:3000/products/REPLACE_WITH_ACTUAL_ID
+
+### Create new product
+POST http://localhost:3000/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Gaming Laptop",
+    "description": "High-performance laptop with RTX 4090 graphics",
+    "price": 1299.99,
+    "category": "Electronics",
+    "inStock": true,
+    "quantity": 25,
+    "brand": "Dell"
+}
+
+### Update product
+PUT http://localhost:3000/products/REPLACE_WITH_ACTUAL_ID HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Gaming Laptop Pro",
+    "description": "Ultra high-performance laptop with RTX 4090 Ti",
+    "price": 1499.99,
+    "category": "Electronics",
+    "inStock": true,
+    "quantity": 15,
+    "brand": "Dell"
+}
+
+### Delete product
+DELETE http://localhost:3000/products/REPLACE_WITH_ACTUAL_ID HTTP/1.1
+
+### ===== CATEGORIES =====
+
+### Get all categories
+GET http://localhost:3000/categories
+
+### Get category by ID
+GET http://localhost:3000/categories/REPLACE_WITH_ACTUAL_ID
+
+### Create new category
+POST http://localhost:3000/categories HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Electronics",
+    "description": "Electronic devices and accessories",
+    "isActive": true
+}
+
+### Update category
+PUT http://localhost:3000/categories/REPLACE_WITH_ACTUAL_ID HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Updated Electronics",
+    "description": "Updated description for electronics",
+    "isActive": false
+}
+
+### Delete category
+DELETE http://localhost:3000/categories/REPLACE_WITH_ACTUAL_ID HTTP/1.1
