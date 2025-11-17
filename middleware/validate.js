@@ -12,7 +12,7 @@ const saveProduct = (req, res, next) => {
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
-      res.status(412).send({
+      res.status(400).send({
         success: false,
         message: 'Validation failed',
         data: err
@@ -31,7 +31,7 @@ const saveCategory = (req, res, next) => {
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
-      res.status(412).send({
+      res.status(400).send({
         success: false,
         message: 'Validation failed',
         data: err
