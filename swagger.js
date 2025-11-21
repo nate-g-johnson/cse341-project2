@@ -5,7 +5,7 @@ const doc = {
         title: 'Products API',
         description: 'Products and Categories API with OAuth authentication'
     },
-    host: 'https://cse341-project2-yjun.onrender.com',
+    host: 'cse341-project2-yjun.onrender.com',
     schemes: ['https'],
     securityDefinitions: {
         oauth2: {
