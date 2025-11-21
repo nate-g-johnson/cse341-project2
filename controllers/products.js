@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
+  // #swagger.tags = ['Products']
   try {
     const lists = await mongodb
       .getDatabase()
@@ -17,6 +18,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  // #swagger.tags = ['Products']
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid product id to find a product.' });
@@ -39,8 +41,8 @@ const getSingle = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-    // #swagger.tags = ['Products']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Products']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     const product = {
       name: req.body.name,
@@ -63,8 +65,8 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-    // #swagger.tags = ['Products']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Products']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid product id to update a product.' });
@@ -91,8 +93,8 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-    // #swagger.tags = ['Products']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Products']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid product id to delete a product.' });

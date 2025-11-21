@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res) => {
+  // #swagger.tags = ['Categories']
   try {
     const lists = await mongodb
       .getDatabase()
@@ -17,6 +18,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
+  // #swagger.tags = ['Categories']
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid category id to find a category.' });
@@ -39,8 +41,8 @@ const getSingle = async (req, res) => {
 };
 
 const createCategory = async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Categories']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     const category = {
       name: req.body.name,
@@ -59,8 +61,8 @@ const createCategory = async (req, res) => {
 };
 
 const updateCategory = async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Categories']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid category id to update a category.' });
@@ -83,8 +85,8 @@ const updateCategory = async (req, res) => {
 };
 
 const deleteCategory = async (req, res) => {
-    // #swagger.tags = ['Categories']
-    // #swagger.security = [{ "oauth2": [] }]
+  // #swagger.tags = ['Categories']
+  // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid category id to delete a category.' });

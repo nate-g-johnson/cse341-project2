@@ -5,15 +5,15 @@
     "description": "Products and Categories API with OAuth authentication",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "https://cse341-project2-yjun.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "oauth2": {
       "type": "oauth2",
-      "authorizationUrl": "http://localhost:3000/auth/github",
+      "authorizationUrl": "https://cse341-project2-yjun.onrender.com/auth/github",
       "flow": "implicit",
       "scopes": {}
     }
@@ -97,6 +97,9 @@
     },
     "/products/": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -170,6 +173,9 @@
     },
     "/products/{id}": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -296,6 +302,9 @@
     },
     "/categories/": {
       "get": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -357,6 +366,9 @@
     },
     "/categories/{id}": {
       "get": {
+        "tags": [
+          "Categories"
+        ],
         "description": "",
         "produces": [
           "application/json"
