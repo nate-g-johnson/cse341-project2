@@ -2,14 +2,22 @@
   "swagger": "2.0",
   "info": {
     "title": "Products API",
-    "description": "Products API for CSE341 Project 2",
+    "description": "Products and Categories API with OAuth authentication",
     "version": "1.0.0"
   },
-  "host": "cse341-project2-yjun.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "authorizationUrl": "http://localhost:3000/auth/github",
+      "flow": "implicit",
+      "scopes": {}
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -30,6 +38,59 @@
         "responses": {
           "default": {
             "description": ""
+          }
+        }
+      }
+    },
+    "/auth/github": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/auth/login-failed": {
+      "get": {
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/status": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -93,10 +154,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       }
     },
     "/products/{id}": {
@@ -178,10 +247,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -203,10 +280,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       }
     },
     "/categories/": {
@@ -256,10 +341,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       }
     },
     "/categories/{id}": {
@@ -329,10 +422,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       },
       "delete": {
         "tags": [
@@ -354,10 +455,18 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ]
       }
     }
   }

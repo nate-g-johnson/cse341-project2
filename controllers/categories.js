@@ -39,7 +39,8 @@ const getSingle = async (req, res) => {
 };
 
 const createCategory = async (req, res) => {
-  // #swagger.tags = ['Categories']
+    // #swagger.tags = ['Categories']
+    // #swagger.security = [{ "oauth2": [] }]
   try {
     const category = {
       name: req.body.name,
@@ -58,7 +59,8 @@ const createCategory = async (req, res) => {
 };
 
 const updateCategory = async (req, res) => {
-  // #swagger.tags = ['Categories']
+    // #swagger.tags = ['Categories']
+    // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid category id to update a category.' });
@@ -81,7 +83,8 @@ const updateCategory = async (req, res) => {
 };
 
 const deleteCategory = async (req, res) => {
-  // #swagger.tags = ['Categories']
+    // #swagger.tags = ['Categories']
+    // #swagger.security = [{ "oauth2": [] }]
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({ message: 'Must use a valid category id to delete a category.' });
