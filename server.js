@@ -1,11 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const passport = require('passport');
 const mongodb = require('./data/database');
 const app = express();
 
 const port = process.env.PORT || 3000;
+
+const store = new MongoDBStore({
+  uri: process.env.MONGODB_URI,
+  collection: 'sessions',
+  expires: 1000 * 60 * 60 * 24
+});
+
+store.on('error', function(error) {
+  console.log('Session store errorL:', error);
+});
 
 // Passport config
 require('./config/passport')(passport);
@@ -13,18 +24,21 @@ require('./config/passport')(passport);
 // Body parser middleware
 app.use(bodyParser.json());
 
-// Session middleware (must be before passport)
+// Session middleware
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  store: store,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 24 
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24, 
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
 }));
 
-// Passport middleware (must be after session)
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
