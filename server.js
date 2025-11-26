@@ -14,32 +14,12 @@ require('./config/passport')(passport);
 // Body parser middleware
 app.use(bodyParser.json());
 
-// create session store
+// Create MongoDB session store
 const sessionStore = MongoStore.create({
     mongoUrl: process.env.MONGODB_URL,
     collectionName: 'sessions',
     ttl: 24 * 60 * 60,
-    touchAfter: 24 * 3600,
-    crypto: {
-        secret: process.env.SESSION_SECRET
-    }
-});
-
-// Listen for session store errors
-sessionStore.on('error', function(error) {
-    console.error('Session store error:', error);
-});
-
-sessionStore.on('create', function(sessionId) {
-    console.log('Session created:', sessionId);
-});
-
-sessionStore.on('touch', function(sessionId) {
-    console.log('Session touched:', sessionId);
-});
-
-sessionStore.on('update', function(sessionId) {
-    console.log('Session updated:', sessionId);
+    autoRemove: 'native'
 });
 
 // Session middleware
@@ -52,10 +32,8 @@ app.use(session({
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24,
-        sameSite: 'lax'
-    },
-    name: 'sessionId',
-    proxy: process.env.NODE_ENV === 'production'
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+    }
 }));
 
 // Passport middleware
@@ -78,16 +56,14 @@ app.use('/', require('./routes'));
 
 // Error handler
 process.on('uncaughtException', (err, origin) => {
-    console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+  console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
 });
 
 // Connect to MongoDB and start server
 mongodb.initDb((err) => {
     if (err) {
-        console.log('MongoDB connection error:', err);
+        console.log(err);
     } else {
-        console.log('Database connected successfully');
-        
         app.listen(port, () => {
             console.log(`Database is listening and node is running on port ${port}`);
         });
